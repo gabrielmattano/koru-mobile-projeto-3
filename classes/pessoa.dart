@@ -7,12 +7,16 @@ class Pessoa {
   final Genero genero;
 
   // Construtor
-  Pessoa(this.nome, this.cpf, this.dataDeNascimento, this.genero) {
+  Pessoa({
+    required this.nome,
+    required this.cpf,
+    required this.dataDeNascimento,
+    required this.genero,
+    }) {
     _idade = _calcularIdade();
   }
 
-  late int
-      _idade; //fix: troca de int? indade por late int idade -gabrielmattano
+  late int _idade;
 
   int _calcularIdade() {
     if (DateTime.now().month < dataDeNascimento.month ||

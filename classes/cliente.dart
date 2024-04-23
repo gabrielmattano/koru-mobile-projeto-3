@@ -1,13 +1,24 @@
 import 'pessoa.dart';
 import 'produto.dart';
 import 'revendedor.dart';
+import '../enums.dart';
 
 class Cliente extends Pessoa {
   double dinheiro;
   List<Produto> produtosComprados = [];
 
-  Cliente(super.nome, super.cpf, super.dataDeNascimento, super.genero,
-      {this.dinheiro = 0});
+  Cliente ({
+    required String nome, 
+    required String cpf,
+    required DateTime dataDeNascimento,
+    required Genero genero,
+    this.dinheiro = 0.0,
+    }) : super(
+      nome: nome,
+      cpf: cpf,
+      dataDeNascimento: dataDeNascimento,
+      genero: genero); 
+
 
 //Criação do método Adicionar Dinheiro
   void adicionarDinheiro(double valor) {

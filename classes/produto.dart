@@ -4,7 +4,11 @@ class Produto {
   int qtdEmEstoque;
   int qtdVendida = 0;
 
-  Produto(this.nome, this.valor, this.qtdEmEstoque);
+  Produto({
+    required this.nome, 
+    required this.valor, 
+    this.qtdEmEstoque = 0,
+    });
 
 //Criação do método verReceitaGerada - guilhermeMiranda
   verReceitaGerada() {

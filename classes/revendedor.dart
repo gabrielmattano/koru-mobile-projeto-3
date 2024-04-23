@@ -3,9 +3,18 @@ import 'pessoa.dart';
 import 'produto.dart';
 
 class Revendedor extends Pessoa {
-Revendedor(String nome, String cpf, DateTime dataDeNascimento, Genero genero,
-    this.matricula)
-    : super(nome, cpf, dataDeNascimento, genero);
+Revendedor({
+  required String nome,
+  required String cpf,
+  required DateTime dataDeNascimento, 
+  required Genero genero,
+  required this.matricula,
+  }) : super(
+    nome:nome,
+    cpf:cpf,
+    dataDeNascimento: dataDeNascimento,
+    genero:genero,
+    );
 
 final String matricula;
 List<Produto> produtosVendidos = [];
@@ -48,22 +57,19 @@ void falar(String fala) {
       print("Pessoa revedendora $nome diz: $fala");
       break;
   }
+}
 
   //Criação método verResumo
   void verResumo(){
     print("O total vendido por $nome foi R\$ ${calcularTotalVendido().toStringAsFixed(2)} e a média aritmética de valor dos produtos vendidos é R\$ ${calcularMediaProdutosVendidos().toStringAsFixed(2)}. O lucro recebido foi de R\$ ${calcularLucroTotal().toStringAsFixed(2)}.");
   }
 
-  
-}
-
-  void venderProduto(Produto item){
-    try{
+   void venderProduto(Produto item) {
+    try {
       produtosVendidos.add(item);
       item.realizarVenda();
-    }catch(e){
-      throw(e);
+    } catch (e) {
+      rethrow;
     }
   }
 }
-

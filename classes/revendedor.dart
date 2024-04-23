@@ -1,6 +1,7 @@
 import '../enums.dart';
 import 'pessoa.dart';
 import 'produto.dart';
+import 'brinde.dart';
 
 class Revendedor extends Pessoa {
 Revendedor({
@@ -68,6 +69,14 @@ void falar(String fala) {
     try {
       produtosVendidos.add(item);
       item.realizarVenda();
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  void realizarTroca(Brinde brinde) {
+    try {
+      brinde.realizarTroca();      
     } catch (e) {
       rethrow;
     }

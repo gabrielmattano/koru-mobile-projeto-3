@@ -76,7 +76,7 @@ class Revendedor extends Pessoa {
     }
   }
 
-    void realizarTroca(Brinde brinde) {
+  void realizarTroca(Brinde brinde) {
     try {
       brinde.realizarTroca();      
     } catch (e) {

@@ -19,7 +19,7 @@ class Brinde extends Produto {
 
   void realizarTroca() {
     if (qtdEmEstoque > 0) {
-      qtdEmEstoque--;      
+      qtdEmEstoque--;
     } else {
       throw("No momento, não possuímos o brinde $nome em estoque");
     }

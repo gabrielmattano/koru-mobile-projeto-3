@@ -85,7 +85,7 @@ class Cliente extends Pessoa {
 
 //Criação de método verProdutosComprados
   void verProdutosComprados() {
-    _ordenarProdutosComprados();    
+    _ordenarProdutosComprados();
     produtosComprados.forEach((produto) =>
         print(" - ${produto.nome} - R\$ ${produto.valor.toStringAsFixed(2)}"));
   }
@@ -120,6 +120,7 @@ class Cliente extends Pessoa {
         }
     }  
 
+
   //Criação do método ordenarBrindes
   void _ordenarBrindes() {
     brindesComprados.sort((a, b) => a.nome.compareTo(b.nome));
@@ -127,7 +128,7 @@ class Cliente extends Pessoa {
 
   //Criação do método verBrindesComprados
   void verBrindes() {
-    _ordenarBrindes();    
+    _ordenarBrindes();
     brindesComprados.forEach((brinde) => print(" - ${brinde.nome}"));
   }
 }

@@ -19,9 +19,10 @@ class Pessoa {
   late int _idade;
 
   int _calcularIdade() {
-    if (DateTime.now().month < dataDeNascimento.month ||
+    bool _jaFezAniversario = DateTime.now().month < dataDeNascimento.month ||
         (DateTime.now().month == dataDeNascimento.month &&
-            DateTime.now().day < dataDeNascimento.day)) {
+            DateTime.now().day < dataDeNascimento.day);
+    if (_jaFezAniversario) {
       _idade = DateTime.now().year - (dataDeNascimento.year + 1);
       return _idade;
     }

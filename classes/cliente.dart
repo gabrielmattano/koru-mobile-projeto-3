@@ -33,18 +33,18 @@ class Cliente extends Pessoa {
 // Refatoração do método falar() de Pessoa.dart
   @override
   void falar(String fala) {
-    print("Cliente $nome diz: $fala.");
+    print("Cliente $nome diz: $fala");
   }
 
 // Validação para o método comprarProduto()
-  bool saldoInsuficiente(dinheiro, Produto) {
+  bool _saldoInsuficiente(dinheiro, Produto) {
     return dinheiro < Produto.valor;
   }
 
 //Criação do método comprarProduto()
   void comprarProduto(Produto produto, Revendedor revendedor) {
     try {
-      if (saldoInsuficiente(dinheiro, produto)) {
+      if (_saldoInsuficiente(dinheiro, produto)) {
         print(
             "$nome não possui dinheiro suficiente para efetuar a compra de ${produto.nome}");
         return;
@@ -56,6 +56,7 @@ class Cliente extends Pessoa {
         print("O saldo atual de $nome é R\$ ${dinheiro.toStringAsFixed(2)}.");
       }
     } catch (e) {
+      print("O saldo de $nome continua R\$ ${dinheiro.toStringAsFixed(2)}.");
       print(e);
     }
   }
@@ -85,7 +86,6 @@ class Cliente extends Pessoa {
 //Criação de método verProdutosComprados
   void verProdutosComprados() {
     _ordenarProdutosComprados();
-    print("Produtos comprados por $nome em ordem alfabética:");
     produtosComprados.forEach((produto) =>
         print(" - ${produto.nome} - R\$ ${produto.valor.toStringAsFixed(2)}"));
   }
@@ -105,16 +105,21 @@ class Cliente extends Pessoa {
   void trocarPontosPorBrinde(Brinde brinde, Revendedor revendedor) {
     if (pontos >= brinde.pontosNecessarios) {
       try {
-        revendedor.realizarTroca(brinde);
+        revendedor.realizarTroca(brinde);        
         brindesComprados.add(brinde);
         pontos -= brinde.pontosNecessarios;
+        String pontosRestantes = pontos > 0 ? "e ainda ainda possui $pontos pontos." : "e não possui mais pontos.";
         print(
-            "Troca realizada! $nome ganhou ${brinde.nome}, e ainda ainda possui $pontos pontos.");
+          "Troca realizada! $nome ganhou ${brinde.nome}, $pontosRestantes",
+        );    
       } catch (e) {
         print(e);
       }
-    }
-  }
+      } else {
+          throw "$nome não possui o suficiente para retirar nenhum brinde.";
+        }
+    }  
+
 
   //Criação do método ordenarBrindes
   void _ordenarBrindes() {
@@ -122,9 +127,8 @@ class Cliente extends Pessoa {
   }
 
   //Criação do método verBrindesComprados
-  void verBrindesComprados() {
+  void verBrindes() {
     _ordenarBrindes();
-    print("Brindes recebidos por $nome:");
     brindesComprados.forEach((brinde) => print(" - ${brinde.nome}"));
   }
 }

@@ -4,6 +4,7 @@ import 'classes/produto.dart';
 import 'classes/revendedor.dart';
 import 'utils.dart';
 import 'enums.dart';
+import 'data/BrindeRepository.dart';
 
 main() {
 
@@ -21,7 +22,7 @@ main() {
   Produto produto3 = Produto(
     nome: "Condicionador Instance Frutas Vermelhas 300 ml", 
     valor: 23.99,
-    qtdEmEstoque: 5,
+    qtdEmEstoque: 50,
     );
   Produto produto4 = Produto(
     nome: "Sérum Facial Multiprotetor FPS 50 12 em 1 Niina Secrets Skin 30ml", 
@@ -313,5 +314,30 @@ main() {
     revendedorC.verResumo();
     revendedorD.verResumo();
     pularLinha();
+
+print("========================= Testes De Brindes =========================");
+      // Simulando adição de dinheiro e compra de produtos para gerar pontos
+  cliente3.adicionarDinheiro(700.0);
+  for (int i = 0; i < 5; i++) {
+    cliente3.comprarProduto(produto3, revendedorC);
+  }
+
+
+  // Testando consulta de pontos para brindes
+  brinde1.consultarPontosNecessarios();
+  brinde2.consultarPontosNecessarios();
+  brinde3.consultarPontosNecessarios();
+
+  // Trocas de pontos por brindes
+  cliente1.trocarPontosPorBrinde(brinde1, revendedorA);
+  cliente2.trocarPontosPorBrinde(brinde2, revendedorB); 
+  cliente3.trocarPontosPorBrinde(brinde1, revendedorC);
+  cliente3.trocarPontosPorBrinde(brinde2, revendedorC);
+  cliente3.trocarPontosPorBrinde(brinde3, revendedorC);
+
+  // Visualização dos brindes recebidos
+  cliente1.verBrindesComprados();
+  cliente2.verBrindesComprados();
+  cliente3.verBrindesComprados();
 }
 
